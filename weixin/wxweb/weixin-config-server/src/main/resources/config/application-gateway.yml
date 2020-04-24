@@ -1,0 +1,17 @@
+
+server:
+  port: 8888
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-web
+          uri: lb://USER-WEB
+          predicates:
+            - Path=/user/**,/res/**
+        - id: friend-web
+          uri: lb://WEIXIN-FRIEND
+          predicates:
+            - Path=/friendApply/**,/friend/**
+  application:
+    name: weixin-gateway

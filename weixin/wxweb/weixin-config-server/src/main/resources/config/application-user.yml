@@ -1,0 +1,13 @@
+
+server:
+  port: 8082
+spring:
+  application:
+    name: user-web
+  datasource:
+    username: root
+    password: 123
+    url: jdbc:mysql://localhost:3306/1911_wechat
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis-plus:
+  type-aliases-package: com.qf.entity

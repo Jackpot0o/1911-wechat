@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WeixinConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.qf.weixinconfigserver.WeixinConfigServerApplication" />
+    <option name="SHOW_IN_DASHBOARD" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <module name="weixin-config-server" />
+    <envs />
+    <method />
+  </configuration>
+</component>

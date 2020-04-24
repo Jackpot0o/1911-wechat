@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="weixin" />
+        <module name="weixin-common" />
+        <module name="weixin-config-server" />
+        <module name="weixin-entity" />
+        <module name="weixin-eureka" />
+        <module name="weixin-friend" />
+        <module name="weixin-gateway" />
+        <module name="weixin-netty" />
+        <module name="weixin-service-api" />
+        <module name="weixin-user" />
+        <module name="wxweb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="weixin" target="1.8" />
+      <module name="weixin-common" target="1.5" />
+      <module name="weixin-config-server" target="1.8" />
+      <module name="weixin-entity" target="1.5" />
+      <module name="weixin-eureka" target="1.8" />
+      <module name="weixin-friend" target="1.8" />
+      <module name="weixin-gateway" target="1.8" />
+      <module name="weixin-netty" target="1.8" />
+      <module name="weixin-service-api" target="1.5" />
+      <module name="weixin-user" target="1.8" />
+      <module name="wxweb" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

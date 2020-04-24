@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/weixin.iml" filepath="$PROJECT_DIR$/weixin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weixin-common/weixin-common.iml" filepath="$PROJECT_DIR$/weixin-common/weixin-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-config-server/weixin-config-server.iml" filepath="$PROJECT_DIR$/wxweb/weixin-config-server/weixin-config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weixin-entity/weixin-entity.iml" filepath="$PROJECT_DIR$/weixin-entity/weixin-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-eureka/weixin-eureka.iml" filepath="$PROJECT_DIR$/wxweb/weixin-eureka/weixin-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-friend/weixin-friend.iml" filepath="$PROJECT_DIR$/wxweb/weixin-friend/weixin-friend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-gateway/weixin-gateway.iml" filepath="$PROJECT_DIR$/wxweb/weixin-gateway/weixin-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-netty/weixin-netty.iml" filepath="$PROJECT_DIR$/wxweb/weixin-netty/weixin-netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weixin-service-api/weixin-service-api.iml" filepath="$PROJECT_DIR$/weixin-service-api/weixin-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/weixin-user/weixin-user.iml" filepath="$PROJECT_DIR$/wxweb/weixin-user/weixin-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxweb/wxweb.iml" filepath="$PROJECT_DIR$/wxweb/wxweb.iml" />
+    </modules>
+  </component>
+</project>
