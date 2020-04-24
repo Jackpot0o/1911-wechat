@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="css/myimg.css"   rel="stylesheet" />
+		<script src="js/mui.js"></script>
+		<script  src="js/weixin_utils.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+				// tap :触屏事件
+				document.getElementById("newuser_but").addEventListener("tap",function(){
+					
+					// 1.打开注册页面
+					plus.webview.open("register.html","register.html");
+					
+				});
+				
+				document.getElementById("login_but").addEventListener("tap",function(){
+					
+					// 1.先获取用户输入的值
+					var username = document.getElementById("username").value;
+					var password= document.getElementById("password").value;
+					
+					
+					plus.device.getInfo({
+							success:function(e){
+								// 2.发送请求
+								util.ajax({
+									url:url.login_url,
+									data:{
+										"username":username,
+										"password":password,
+										"did":e.uuid
+									},
+									success:function(data){
+										if(data.code == "ok"){
+											
+											// 1.提示信息
+											data.msg = "登录成功";
+											
+											// 2.把用户对象保存的本机的数据库
+											var user = data.data; // user是JOSN对象
+											util.setUser(user);
+											
+											// 3.跳转到首页
+											var cpage = plus.webview.currentWebview();
+											plus.webview.open("index.html","index.html");
+											cpage.close();
+										}
+										plus.nativeUI.toast(data.msg);
+									}
+								})
+							}
+						});
+					
+					
+
+				})
+								
+			})
+		</script>
+	</head>
+
+	<body style="text-align: center;">
+		
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+		
+		<div style="margin-top: 150px;">
+			<img src="image/header.jpg" style="width: 150px;" class="cimg" />
+			
+			<form class="mui-input-group" style="">
+				
+				<div class="mui-input-row">
+					<label>用户名</label>
+				<input type="text" id="username"  value="admin" class="mui-input-clear" placeholder="请输入用户名">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input type="password" id="password" value="admin" class="mui-input-password" placeholder="请输入密码">
+				</div>
+				<div class="mui-button-row">
+					<button type="button"  id="login_but" class="mui-btn mui-btn-success" style="width: 80%;">登录</button>
+				</div>
+			</form>
+			
+			<a id="newuser_but">新用户</a> <a>忘记密码</a>
+			<a href="http://192.168.139.1:8888/user/test">测试</a>
+		</div>
+	</body>
+
+
+
+</html>

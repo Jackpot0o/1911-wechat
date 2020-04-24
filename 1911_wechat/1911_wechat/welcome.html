@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			
+			//plus插件加载完成后就会调用这个函数
+			mui.plusReady(function () {   //类似于Jquery的($(function(){}))
+			    setTimeout(function() {
+					
+					//跳转到登录页面
+					
+					//1.获取当前页面
+					var cpage=plus.webview.currentWebview();
+					
+					//2.跳转到登录页面
+					var p= plus.webview.open("login.html","login.html");
+					
+					//3.关闭页面
+					cpage.close();
+				}, 2000);
+			})
+		</script>
+	</head>
+
+	<body>
+		<img src="image/welcomebg.jpg" style="width: 100%;"/>
+	</body>
+
+</html>

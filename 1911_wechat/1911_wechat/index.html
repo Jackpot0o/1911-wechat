@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<script src="js/websocket.js"></script>
+	<script src="js/weixin_utils.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+			
+		mui.plusReady(function () {
+			// 连接WebSocket服务器
+			ws.init({
+				onopen:function(){
+					console.info("客户端连接成功...");
+					
+					plus.device.getInfo({
+							success:function(e){
+								var user = util.getUser();
+								var param = {"did":e.uuid,"type":1,"uid":user.id};
+								sendObj(param);
+							}
+						});
+				},
+				onclose:function(){
+					console.info("客户端连关闭...");
+				},
+				onmessage:function(data){
+					console.info("数据:"+data);
+					var obj = JSON.parse(data);
+					if(obj.type == 6){ // 挤下线
+					 
+						 // 先把本机用户删除
+						  plus.storage.removeItem("login_user");
+						  
+						 // 获取当前页面
+						  var cpage = plus.webview.currentWebview();
+						  
+						  plus.nativeUI.toast("你在账户已在其他设备登录，如果非本人操作，请求修改密码。。。");
+						  
+						  // 跳转到登录页面
+						  plus.webview.open("login.html","login.html");
+						  
+						  // 关闭当前页面
+						  cpage.close();
+							
+					}else if(obj.type == 3){ // 单聊
+						
+						var fid = plus.webview.getWebviewById("chat_msg_"+obj.fid);
+						
+						// 显示聊天消息
+						fid.evalJS("shwoMsg("+JSON.stringify(obj)+")");
+						
+						//保存聊天消息
+						fid.evalJS("saveMsg("+JSON.stringify(obj)+")");
+					}
+					
+					
+				}
+			})
+	
+		    // 1.把四个页面放到一个数组里面
+		    var pageArray = ["msg.html","friend.html","discovery.html","me.html"];
+		    
+			var styles = {top:'0px',bottom:'50px'}; // 新页面的样式
+			
+		    // 2.遍历数据创建页面
+		    for(var i =0;i<pageArray.length;i++){
+		    	
+		    	var page = pageArray[i];
+		    	
+		    	// 3.创建一个页面
+		    	var newPage = plus.webview.create(page,page,styles);
+				
+				// 4.给当前页面添加一个子界面
+				var cpage = plus.webview.currentWebview();
+				cpage.append(newPage);
+				
+				if(i != 0){
+					newPage.hide();
+				}
+		    	
+		    };
+				
+			mui("nav").on('tap','a',function(){
+				
+				// 1.获取点击节点的id
+			  var id = this.getAttribute("id");
+			  
+			  //  2.根据id获取页面
+			  var pageId = pageArray[id];
+			  
+			  // 3.根据页面id找到页面对象
+			  plus.webview.getWebviewById(pageId).show();
+			}) 
+			
+		})
+		
+		// 发送消息
+		function sendContent(msgParam){ // 转成对象
+			sendObj(msgParam);
+		}
+		
+    </script>
+</head>
+<body>
+	index
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" id="0"  style="touch-action: none;">
+			<span class="mui-icon mui-icon-weixin"></span>
+			<span class="mui-tab-label">消息</span>
+		</a>
+		<a class="mui-tab-item" id="1"  style="touch-action: none;"> 
+			<span class="mui-icon mui-icon-contact" ></span>
+			<span class="mui-tab-label">好友</span>
+		</a>
+		<a class="mui-tab-item" id="2"  style="touch-action: none;">
+			<span class="mui-icon mui-icon-navigate" ></span>
+			<span class="mui-tab-label">发现</span>
+		</a>
+		<a class="mui-tab-item"  id="3"  style="touch-action: none;">
+			<span class="mui-icon mui-icon-person"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+</body>
+</html>
